@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const ajax = (url, callback) =>{
+            const request = new XMLHttpRequest(); //the "new" keyword allows the developer to call an instance of an object
+            request.onreadystatechange =() => {
+                if (request.onreadystatechange === 4 && request.status === 200) {
+                    console.log(request.response);
+                    console.log(JSON.parse(request.response))
+
+                    //let names = JSON.parse(request.response)
+                    //let doc = document.querySelector("body")//  
+                    //names.forEacch(name=>{
+                    //    let nameDom = document.createElement("div")
+                    //    nameDom.innerHTML = name.name;
+                    //    doc.append(nameDom)
+                    //})
+                }   
+            };
+
+            request.open("GET",url); // this initializes the const/ready statement.has a function to open something new, using the "GET" method. The get method is used everytime you open a web page.  I.E. Https
+            request.send();
+        }
+
+        ajax("./names.json", (resp)=>console.log(JSON.parse(resp)))
+
+        const getPeople = (page =1) => {
+            ajax(`https://swapi.dev/api/people/?page=${page}`, response=>console.log(JSON.parse(response)))
+        }
+        getPeople()
+        getPeople(3)
+        getPeople(5)
+
+
+    
+    </script>
+</body>
+</html>

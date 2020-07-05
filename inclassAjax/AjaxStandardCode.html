@@ -1,0 +1,18 @@
+<script>
+
+    const ajax = (url, callback) =>{
+        const request = new XMLHttpRequest(); //the "new" keyword allows the developer to call an instance of an object
+        request.onreadystatechange =() => {
+            if (request.onreadystatechange === 4 && request.status === 200) {
+                console.log(request.response);
+                console.log(JSON.parse(request.response))
+
+                
+            }   
+        };
+
+        request.open("GET",url); // this initializes the const/ready statement.has a function to open something new, using the "GET" method. The get method is used everytime you open a web page.  I.E. Https
+        request.send();
+    }
+
+</script>
